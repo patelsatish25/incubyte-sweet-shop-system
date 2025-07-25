@@ -1,3 +1,7 @@
+const express=require("express")
+//connect mongodb connection
+const mongoconnect=require("../mongodbcon")
+
 const Register = (req, res) => {
     const { username, name, phone} = req.body;
   
@@ -8,5 +12,6 @@ const Register = (req, res) => {
     
 };
   
+
   module.exports = Register;
   

@@ -1,7 +1,10 @@
-const express =require("express");
-// const app=express()
-const Router=express.Router();
+
+const express = require("express");
+const router = express.Router();
 const Register=require("../controllers/Register")
-Router.post("/Register",Register)
-// Router.post()
-module.exports=Router;
+
+// Route: POST /api/auth/register
+
+router.post("/Register",Register);
+module.exports = router;
+
