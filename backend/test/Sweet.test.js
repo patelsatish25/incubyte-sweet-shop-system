@@ -12,6 +12,12 @@ const Sweet = require("../src/model/SweetModels");
 const bcrypt = require("bcryptjs");
 
 const UserAccount = require("../src/model/UserModel");
+const {generateTestToken}=require("./testUtils")
+
+
+
+
+
 
 // Test suite for sweet addition API
 describe("add sweets: /api/sweets", () => {
@@ -235,3 +241,9 @@ describe("get sweets: GET /api/sweets",()=>{
     expect(Array.isArray(res.body)).toBe(true);
   });
 })
+
+describe("GET /api/sweets/search (with auth)", () => {
+ 
+  });
+
+

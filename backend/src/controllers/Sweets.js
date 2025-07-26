@@ -48,4 +48,14 @@ const getSweets=async(req,res)=>{
     res.status(500).json({ error: "Failed to fetch sweets." });
   }
 }
-module.exports ={addSweets,getSweets};
+
+const searchSweets =async(req,res)=>{
+ 
+
+  
+};
+
+
+
+
+module.exports ={addSweets,getSweets,searchSweets};

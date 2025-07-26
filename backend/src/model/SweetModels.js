@@ -21,10 +21,8 @@ const sweetSchema = new mongoose.Schema({
     type: Number,
     required: true,
     min: 0
-  },
-  imageUrl: {
-    type: String,
   }
+ 
 });
 
 const Sweets=mongoose.model("Sweet", sweetSchema);
