@@ -41,6 +41,11 @@ const addSweets=async(req,res)=>
 }
 
 const getSweets=async(req,res)=>{
- 
+  try {
+    const sweets = await Sweets.find();
+    res.status(200).json(sweets);
+  } catch (error) {
+    res.status(500).json({ error: "Failed to fetch sweets." });
+  }
 }
 module.exports ={addSweets,getSweets};
