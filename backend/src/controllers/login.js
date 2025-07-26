@@ -1,7 +1,10 @@
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
+const mongoconnect=require("../mongodbcon")
 const UserAccount = require("../model/UserModel");
-
+if (process.env.NODE_ENV !== "test") {
+    mongoconnect();
+  }
 const login = async (req, res) => {
   try {
     const { username, password } = req.body;
