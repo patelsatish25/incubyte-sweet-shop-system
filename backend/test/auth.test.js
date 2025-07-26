@@ -85,9 +85,38 @@ describe("auth : login",()=>{
       const response = await request(app).post("/api/auth/login").send({
         username: "testuser",
         password: "wrongpass",
+        fole:"admin"
       });
       expect(response.statusCode).toBe(401);
       expect(response.body).toEqual({ error: "Invalid username or password" });
     });
+
+    it("should return 200 for valid credentials and correct role message", async () => {
+      const response = await request(app)
+        .post("/api/auth/login")
+        .send({
+          username: "Satish", // insert a test user with role: 'admin'
+          password: "123456",
+          admin:"admin",
+        });
+    
+      expect(response.statusCode).toBe(200);
+      expect(response.body).toMatchObject({
+        message: "Admin login successful", // or "User login successful"
+      });
+    });
+    it("should return 200 for valid credentials and correct role message", async () => {
+      const response = await request(app)
+        .post("/api/auth/login")
+        .send({
+          username: "adminUser", // insert a test user with role: 'admin'
+          password: "123456",
+          role:"user"
+        });
+    
+      expect(response.statusCode).toBe(200);
+     
+    });
+    
 
 })
