@@ -37,7 +37,11 @@ const login = async (req, res) => {
     { expiresIn: "1h" }
   );
 
- 
+  return res.status(200).json({
+    message: `${user.role.charAt(0).toUpperCase() + user.role.slice(1)} login successful`,
+    token,
+    role: user.role
+  });
 
 }catch(error)
 {
