@@ -103,7 +103,25 @@ const updateSweet=async(req,res)=>{
 }
 
 const deleteSweet=async(req,res)=>{
- 
+  try {
+    // ✅ Check if user is admin
+    const role = req.headers["role"];
+    if (role !== "admin") 
+      {
+      return res.status(403).json({ error: "Access denied. Admins only." });
+    }
+
+    const deleted = await Sweets.findByIdAndDelete(req.params.id);
+
+    if (!deleted) {
+      return res.status(404).json({ error: "Sweet not found" });
+    }
+
+    res.status(200).json({ message: "Sweet deleted successfully" });
+  } catch (error) {
+    console.error("Delete error:", error);
+    res.status(500).json({ error: "Server error" });
+  }
 }
 
 module.exports ={addSweets,getSweets,searchSweets,updateSweet,deleteSweet};
