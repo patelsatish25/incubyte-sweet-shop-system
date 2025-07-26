@@ -1,5 +1,6 @@
 const express=require("express")
 //connect mongodb connection
+const bcrypt = require("bcryptjs")
 const mongoconnect=require("../mongodbcon")
 const UserAccount =require("../model/UserModel")
 
@@ -20,11 +21,18 @@ const Register = async(req, res) => {
       // return res.status(500).json({ error: "Username is already used" });
       console.log("✅ Duplicate user found. Sending error...");
   return res.status(500).json({ error: "Username is already used" });
-
-
   }
-    
+  const passwordencyp = await bcrypt.hash(password, 10)
+  // Create new user with hashed password
+  const user = new userAccount({
   
+    username,
+    email,
+    password: passwordencyp,  // Use hashed password
+   
+  });
+
+  const ids = await user.save();
     
 };
   
