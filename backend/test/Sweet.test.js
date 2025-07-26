@@ -149,3 +149,89 @@ describe("add sweets: /api/sweets", () => {
   });
 
 });
+
+describe("get sweets: GET /api/sweets",()=>{
+
+ 
+
+  
+  it("should return 403 if no token is provided", async () => {
+    
+    const res = await request(app).get("/api/sweets");
+    expect(res.statusCode).toBe(403);
+    expect(res.body).toEqual({ error: "Invalid token" });
+  });
+  
+  it("should return 403 if token is invalid", async () => {
+    const res = await request(app)
+      .get("/api/sweets")
+      .set("Authorization", "Bearer invalidtoken123");
+      
+    expect(res.statusCode).toBe(403);
+    expect(res.body).toEqual({ error: "Invalid token" });
+  });
+
+  it("should return empty array if no sweets in DB", async () => {
+    
+ 
+    const passwordencyp = await bcrypt.hash("123456", 10);
+    
+    await UserAccount.create({
+      username: "testuser",
+      email: "test@example.com",
+      password: passwordencyp,
+      role: "user"
+    });
+  
+    const auth = await request(app)
+      .post("/api/auth/login")
+      .send({
+        username: "testuser",
+        password: "123456",
+      });
+
+     
+
+    const res = await request(app)
+      .get("/api/sweets")
+      .set("Authorization", auth.body.token)
+  
+    expect(res.statusCode).toBe(200);
+    expect(res.body).toEqual([]);
+  });
+
+  it("should return 200 and list of sweets with valid token", async () => {
+   
+    const passwordencyp = await bcrypt.hash("123456", 10);
+    // Mock login or manually generate token
+    await UserAccount.create({
+      username: "testuser",
+      email: "test@example.com",
+      password: passwordencyp,
+      role: "user"
+    });
+  
+    const auth = await request(app)
+      .post("/api/auth/login")
+      .send({
+        username: "testuser",
+        password: "123456",
+      });
+
+      await Sweet.create({
+        sweetId: "SWEET101",
+        name: "Rasgulla",
+        category: "Ladoo",
+        price: 180,
+        quantityInStock: 50
+      });
+    
+  
+      const res = await request(app)
+      .get("/api/sweets")
+      .set("Authorization", auth.body.token)
+      console.log(res.body)
+    expect(res.statusCode).toBe(200);
+    expect(Array.isArray(res.body)).toBe(true);
+  });
+})

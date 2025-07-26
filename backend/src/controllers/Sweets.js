@@ -35,7 +35,12 @@ const addSweets=async(req,res)=>
       console.error("❌ Error while adding sweet:", error.message);
       return res.status(500).json({ error: "Internal Server Error" });
     }
-
+   
+     
 
 }
-module.exports =addSweets;
+
+const getSweets=async(req,res)=>{
+ 
+}
+module.exports ={addSweets,getSweets};
