@@ -14,7 +14,8 @@ describe("MongoDB Connection Utility", () => {
   
        const msg= await connectToDatabase();
        expect(msg).toBe("success")
-      // expect(mongoose.connect).toHaveBeenCalled();
-      // expect(logSpy).toHaveBeenCalledWith("✅ MongoDB connected successfully");
+     
     });
+
+   
 });

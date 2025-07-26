@@ -1,5 +1,5 @@
 const mongoose = require("mongoose");
-
+//schema of userAccount
 const userSchema = new mongoose.Schema({
   username: {
     type: String,
@@ -15,5 +15,7 @@ const userSchema = new mongoose.Schema({
     required: true,
   },
 });
+// store userSchema into userAccount and export the Useraccount
+let UserAccount = mongoose.model("UserAccount", userSchema);
 
-module.exports = mongoose.model("User", userSchema);
+module.exports=UserAccount;
