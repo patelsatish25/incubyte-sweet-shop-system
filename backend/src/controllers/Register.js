@@ -18,7 +18,7 @@ const Register = async(req, res) => {
     }
     //1. check Duplicate data
     const veryfie = await UserAccount.findOne({ username })
-    console.log(veryfie);
+    // console.log(veryfie);
     if (veryfie) {
       // return res.status(500).json({ error: "Username is already used" });
       console.log("✅ Duplicate user found. Sending error...");
