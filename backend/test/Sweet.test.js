@@ -371,4 +371,75 @@ let id = sweet._id;
 
 
 
+describe("DELETE /api/sweets/:id", () => {
 
+
+  
+  it("should delete the sweet if valid admin token is provided", async () => {
+    // Insert again because afterEach clears DB
+    const sweet = await Sweet.create({
+      sweetId: "SWEET004",
+      name: "Test Barfi",
+      category: "Barfi",
+      price: 150,
+      quantityInStock: 50,
+    });
+
+    let token=await generateTestToken()
+    const res = await request(app)
+      .delete(`/api/sweets/${sweet._id}`)
+      .set("Authorization",token)
+      .set("role","admin")
+    expect(res.status).toBe(200);
+    expect(res.body.message).toBe("Sweet deleted successfully");
+
+    const check = await Sweet.findById(sweet._id);
+    expect(check).toBeNull();
+  });
+
+
+  it("should return 403 if token is missing", async () => {
+    let sweet_id= await getsweetId()
+    const res = await request(app)
+      .delete(`/api/sweets/${sweet_id}`);
+
+    expect(res.status).toBe(403);
+   
+  });
+
+  it("should return 403 if token is invalid", async () => {
+    
+    let sweet_id= await getsweetId()
+    const res = await request(app)
+      .delete(`/api/sweets/${sweet_id}`)
+      .set("Authorization", "Bearer faketoken123");
+
+    expect(res.status).toBe(403);
+    expect(res.body.error).toBe("Invalid token");
+  });
+
+  it("should return 403 if user is not admin", async () => {
+    let token=await generateTestToken()
+    let sweetId= await getsweetId()
+    const res = await request(app)
+   
+      .delete(`/api/sweets/${sweetId}`)
+      .set("Authorization", token)
+      .set("role","user")
+    expect(res.status).toBe(403);
+    expect(res.body.error).toBe("Access denied. Admins only.");
+  });
+
+  it("should return 404 if sweet ID does not exist", async () => {
+    
+    let token=await generateTestToken()
+    let sweetId= "686bda4609c5cc1398e3f323"
+    const res = await request(app)
+      .delete(`/api/sweets/${sweetId}`)
+      .set("Authorization", token)
+      .set("role","admin")
+
+    expect(res.status).toBe(404);
+    expect(res.body.error).toBe("Sweet not found");
+  });
+});
