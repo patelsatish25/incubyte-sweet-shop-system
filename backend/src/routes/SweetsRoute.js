@@ -1,5 +1,6 @@
 const express =require("express")
-const Router=express.Router();
-const addSweets=express.Router();
-Router.post("/",addSweets)
-module.exports=Router;
+const router=express.Router();
+// const addSweets=require("../controllers/Sweets")
+const addSweets=require("../controllers/Sweets")
+router.post("/",addSweets)
+module.exports=router;
