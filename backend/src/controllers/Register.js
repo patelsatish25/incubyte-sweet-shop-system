@@ -10,10 +10,10 @@ if (process.env.NODE_ENV !== "test") {
 const Register = async(req, res) => {
   try
   {
-    const { username, email, password} = req.body;
+    const { username, email, password,role} = req.body;
   
     // 1. Check for missing fields
-    if (!username || !email || !password) {
+    if (!username || !email || !password||!role) {
       return res.status(400).json({ error: "Missing required fields" });
     }
     //1. check Duplicate data
@@ -33,6 +33,7 @@ const Register = async(req, res) => {
     username,
     email,
     password: passwordencyp,
+    role
   });
 
   await user.save();

@@ -14,6 +14,10 @@ const userSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
+  role:{
+    type: String,
+    required: true,
+  }
 });
 // store userSchema into userAccount and export the Useraccount
 let UserAccount = mongoose.model("UserAccount", userSchema);

@@ -21,6 +21,7 @@ describe("Auth: Register API", () => {
       username: "satish@123",
       email: "satish@example.com",
       password: 123456,
+      role:"user"
     });
   
     const response = await request(app)
@@ -29,6 +30,7 @@ describe("Auth: Register API", () => {
         username: "satish@123", // Duplicate
         email: "another@example.com",
         password: 987654,
+        role:"admin"
       });
   
     expect(response.statusCode).toBe(500);
@@ -43,6 +45,7 @@ describe("Auth: Register API", () => {
         username: "newuser@123",
         email: "newuser@example.com",
         password: "123456",
+        role:"admin"
       });
   
     expect(response.statusCode).toBe(201);
@@ -64,6 +67,7 @@ describe("auth : login",()=>{
       username: "testuser",
       email: "testuser@example.com",
       password: hashedPassword,
+      role:"user"
     });
   });
 
