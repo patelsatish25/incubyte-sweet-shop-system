@@ -8,6 +8,8 @@ if (process.env.NODE_ENV !== "test") {
   mongoconnect();
 }
 const Register = async(req, res) => {
+  try
+  {
     const { username, email, password} = req.body;
   
     // 1. Check for missing fields
@@ -22,17 +24,24 @@ const Register = async(req, res) => {
       console.log("✅ Duplicate user found. Sending error...");
   return res.status(500).json({ error: "Username is already used" });
   }
-  const passwordencyp = await bcrypt.hash(password, 10)
-  // Create new user with hashed password
-  const user = new userAccount({
-  
+
+  // ✅ Step 3: Hash password using bcrypt
+  const passwordencyp = await bcrypt.hash(password, 10);
+
+  // ✅ Step 4: Create and save new user
+  const user = new UserAccount({
     username,
     email,
-    password: passwordencyp,  // Use hashed password
-   
+    password: passwordencyp,
   });
 
-  const ids = await user.save();
+  await user.save();
+
+ 
+}catch(error) {
+  console.error("❌ Registration error:", error.message);
+  return res.status(520).json({ error: error });
+}
     
 };
   

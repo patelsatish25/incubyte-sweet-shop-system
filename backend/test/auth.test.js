@@ -35,6 +35,22 @@ describe("Auth: Register API", () => {
   }, 10000);
 
   
+  it("should return 201 if user registers successfully", async () => {
+    const response = await request(app)
+      .post("/api/auth/register")
+      .send({
+        username: "newuser@123",
+        email: "newuser@example.com",
+        password: "123456",
+      });
+  
+    expect(response.statusCode).toBe(201);
+    expect(response.body).toMatchObject({
+      message: "User registered successfully",
+    });
+
+   
+  });
   
 
 
