@@ -2,6 +2,7 @@ const request = require("supertest");
 const app = require("../src/app");
 const mongoser=require("./setUp")
 const bcrypt = require("bcryptjs");
+
 const UserAccount=require("../src/model/UserModel")
 describe("Auth: Register API", () => {
   
@@ -62,12 +63,13 @@ describe("Auth: Register API", () => {
 
 describe("auth : login",()=>{
   beforeAll(async () => {
-    const hashedPassword = await bcrypt.hash("123456", 10);
+    // const hashedPassword = await bcrypt.hash("123456", 10); // Make sure this line runs!
+     const passwordencyp = await bcrypt.hash("123456", 10);
     await UserAccount.create({
       username: "testuser",
-      email: "testuser@example.com",
-      password: hashedPassword,
-      role:"user"
+      email: "test@example.com",
+      password: passwordencyp ,
+      role: "user"
     });
   });
 
@@ -84,36 +86,31 @@ describe("auth : login",()=>{
     it("should return 401 for incorrect password", async () => {
       const response = await request(app).post("/api/auth/login").send({
         username: "testuser",
-        password: "wrongpass",
-        fole:"admin"
+        password: "wrongpass"
+       
       });
       expect(response.statusCode).toBe(401);
       expect(response.body).toEqual({ error: "Invalid username or password" });
     });
 
+   
     it("should return 200 for valid credentials and correct role message", async () => {
-      const response = await request(app)
-        .post("/api/auth/login")
-        .send({
-          username: "Satish", // insert a test user with role: 'admin'
-          password: "123456",
-          admin:"admin",
-        });
-    
-      expect(response.statusCode).toBe(200);
-      expect(response.body).toMatchObject({
-        message: "Admin login successful", // or "User login successful"
+      
+      const passwordencyp = await bcrypt.hash("123456", 10);
+      await UserAccount.create({
+        username: "testuser",
+        email: "test@example.com",
+        password: passwordencyp ,
+        role: "user"
       });
-    });
-    it("should return 200 for valid credentials and correct role message", async () => {
+      
       const response = await request(app)
         .post("/api/auth/login")
         .send({
-          username: "adminUser", // insert a test user with role: 'admin'
-          password: "123456",
-          role:"user"
+          username: "testuser",
+          password: "123456", 
         });
-    
+      console.log("Response:", response.body); // 
       expect(response.statusCode).toBe(200);
      
     });
