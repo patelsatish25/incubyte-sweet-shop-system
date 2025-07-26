@@ -80,5 +80,14 @@ describe("auth : login",()=>{
     expect(response.statusCode).toBe(400);
     expect(response.body).toEqual({ error: "Missing credentials" });
   });
+    /** @test Invalid username & password */
+    it("should return 401 for incorrect password", async () => {
+      const response = await request(app).post("/api/auth/login").send({
+        username: "testuser",
+        password: "wrongpass",
+      });
+      expect(response.statusCode).toBe(401);
+      expect(response.body).toEqual({ error: "Invalid username or password" });
+    });
 
 })
