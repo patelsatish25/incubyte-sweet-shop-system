@@ -3,18 +3,28 @@ const express=require("express")
 const mongoconnect=require("../mongodbcon")
 const UserAccount =require("../model/UserModel")
 
-mongoconnect();
+if (process.env.NODE_ENV !== "test") {
+  mongoconnect();
+}
 const Register = async(req, res) => {
-    const { username, name, phone} = req.body;
+    const { username, email, password} = req.body;
   
     // 1. Check for missing fields
-    if (!username || !name || !phone) {
+    if (!username || !email || !password) {
       return res.status(400).json({ error: "Missing required fields" });
     }
-    const veryfie = await userAccount.findOne({ username })
+    //1. check Duplicate data
+    const veryfie = await UserAccount.findOne({ username })
     console.log(veryfie);
-    if (veryfie) { res.status(500).json({ msg: "allredy exists" }) }
+    if (veryfie) {
+      // return res.status(500).json({ error: "Username is already used" });
+      console.log("✅ Duplicate user found. Sending error...");
+  return res.status(500).json({ error: "Username is already used" });
 
+
+  }
+    
+  
     
 };
   
