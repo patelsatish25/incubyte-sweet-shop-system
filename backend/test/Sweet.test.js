@@ -16,9 +16,6 @@ const {generateTestToken}=require("./testUtils")
 
 
 
-
-
-
 // Test suite for sweet addition API
 describe("add sweets: /api/sweets", () => {
 
@@ -112,11 +109,7 @@ describe("add sweets: /api/sweets", () => {
 
     expect(response.statusCode).toBe(201); // Created successfully
 
-    // Optional DB checks commented out
-    // const sweet = await Sweet.findOne({ sweetId: "SWEET001" });
-    // expect(sweet).not.toBeNull();
-    // expect(sweet.name).toBe("Kaju Katli");
-    // expect(sweet.price).toBe(250);
+    
   });
 
   // Test case: Should reject normal user from adding sweets (admin-only access)
@@ -299,3 +292,4 @@ describe("GET /api/sweets/search (with auth)", () => {
 
 
 })
+

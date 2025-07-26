@@ -5,6 +5,7 @@ const app = require("../src/app");
 const request = require("supertest");
 const bcrypt = require("bcryptjs");
 const Sweets=require("../src/model/SweetModels")
+
 const generateTestToken = async (role = "user") => {
  
 
@@ -25,13 +26,14 @@ const generateTestToken = async (role = "user") => {
       quantityInStock: 100,
     },
     {
-      
+       
         name: "Milk Chocolate",
         category: "Chocolate",
         price: 180,
         quantityInStock: 50,
       }
   ]);
+  
   const auth = await request(app) // Login request
     .post("/api/auth/login")
     .send({

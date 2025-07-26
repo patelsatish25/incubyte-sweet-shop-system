@@ -81,7 +81,9 @@ const searchSweets =async(req,res)=>{
   }
 };
 
+const updateSweet=async(req,res)=>{
+  
+}
 
 
-
-module.exports ={addSweets,getSweets,searchSweets};
+module.exports ={addSweets,getSweets,searchSweets,updateSweet};
