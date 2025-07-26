@@ -265,7 +265,7 @@ describe("GET /api/sweets/search (with auth)", () => {
     const res = await request(app)
       .get("/api/sweets/search?name=kaju")
       .set("Authorization",token );
-      console.log(res)
+      
     expect(res.status).toBe(200);
     expect(res.body.length).toBe(1);
     expect(res.body[0].name).toBe("Kaju Katli");
@@ -443,3 +443,6 @@ describe("DELETE /api/sweets/:id", () => {
     expect(res.body.error).toBe("Sweet not found");
   });
 });
+
+
+

@@ -124,4 +124,5 @@ const deleteSweet=async(req,res)=>{
   }
 }
 
+
 module.exports ={addSweets,getSweets,searchSweets,updateSweet,deleteSweet};
