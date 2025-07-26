@@ -1,6 +1,6 @@
 // const request = require("supertest");
 const mongoose =require("mongoose")
-const mongodb = require("../src/mongodbcon");
+const connectToDatabase= require("../src/mongodbcon");
 
 
 describe("MongoDB Connection Utility", () => {
@@ -10,13 +10,11 @@ describe("MongoDB Connection Utility", () => {
   
     it("should connect to MongoDB successfully", async () => {
       // Mock mongoose.connect to resolve
-      jest.spyOn(mongoose, "connect").mockResolvedValueOnce();
   
-      const logSpy = jest.spyOn(console, "log").mockImplementation(() => {});
   
-      await connectToDatabase();
-  
-      expect(mongoose.connect).toHaveBeenCalled();
-      expect(logSpy).toHaveBeenCalledWith("✅ MongoDB connected successfully");
+       const msg= await connectToDatabase();
+       expect(msg).toBe("success")
+      // expect(mongoose.connect).toHaveBeenCalled();
+      // expect(logSpy).toHaveBeenCalledWith("✅ MongoDB connected successfully");
     });
 });
