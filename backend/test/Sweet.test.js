@@ -14,6 +14,18 @@ const bcrypt = require("bcryptjs");
 const UserAccount = require("../src/model/UserModel");
 const {generateTestToken}=require("./testUtils")
 
+async function  getsweetId ()
+{
+  const sweet = await Sweet.create({
+    sweetId: "SWEET004",
+    name: "Test Barfi",
+    category: "Barfi",
+    price: 150,
+    quantityInStock: 50,
+  });
+
+  return sweet.__id;
+}
 
 
 // Test suite for sweet addition API
@@ -356,3 +368,7 @@ let id = sweet._id;
 
  
 });
+
+
+
+
