@@ -37,7 +37,8 @@ const Register = async(req, res) => {
 
   await user.save();
 
- 
+  // ✅ Step 5: Return success response
+  return res.status(201).json({ message: "User registered successfully" });
 }catch(error) {
   console.error("❌ Registration error:", error.message);
   return res.status(520).json({ error: error });
