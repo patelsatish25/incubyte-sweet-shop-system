@@ -26,6 +26,17 @@ async function getproductid()
     return  sweet._id;
 }
 
+async function getadminprodect() {
+  let   sweet = await Sweet.create({
+        sweetId: "SWEET_RSTK",
+        name: "Restock Sweet",
+        category: "Barfi",
+        price: 80,
+        quantityInStock: 5,
+      });
+      return sweet._id;
+}
+
 describe("POST /api/sweets/:id/purchase", () => {
  
   
@@ -104,3 +115,7 @@ describe("POST /api/sweets/:id/purchase", () => {
       expect(res.body.error).toBe("Sweet not found");
     });
   });
+
+
+ 
+  

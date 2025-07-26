@@ -37,4 +37,7 @@ const purchaseSweet=async(req,res)=>{
   
   }
 
-  module.exports={purchaseSweet}
+  const restockSweet=async(req,res)=>{
+   
+  }
+  module.exports={purchaseSweet,restockSweet}
