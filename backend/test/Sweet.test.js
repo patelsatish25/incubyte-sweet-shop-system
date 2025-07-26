@@ -293,3 +293,66 @@ describe("GET /api/sweets/search (with auth)", () => {
 
 })
 
+describe("PUT /api/sweets/:id",() => {
+
+  it("should update the sweet details if valid token and data provided", async () => {
+    let token=await generateTestToken()
+    // let id=await Sweet.find({"name":"Milk Chocolate"},{_id:1})
+    let sweet = await Sweet.findOne({ name: "Milk Chocolate" }, { _id: 1 });
+let id = sweet._id;
+    console.log(id)
+    const res = await request(app)
+      .put(`/api/sweets/${id}`)
+      .set("Authorization", token)
+      .send({
+        price: 150,
+        quantityInStock: 60,
+      });
+
+    expect(res.status).toBe(200);
+   
+  });
+
+  it("should return 403 if no token provided", async () => {
+    
+    await Sweet.create({
+      name: "Kaju Katli",
+      category: "Barfi",
+      price: 250,
+      quantityInStock: 100,
+    });
+    let sweets = await Sweet.findOne({ name: "Kaju Katli" }, { _id: 1 });
+    
+    console.log(sweets)
+    let id = sweets._id;
+   
+    const res = await request(app)
+      .put(`/api/sweets/${id}`)
+      .send({ price: 120 });
+  
+    expect(res.status).toBe(403); // 🔄 Adjust if needed
+  });
+
+
+  it("should return 403 for invalid token", async () => {
+   
+    await Sweet.create({
+      name: "Kaju Katli",
+      category: "Barfi",
+      price: 250,
+      quantityInStock: 100,
+    });
+    let sweets = await Sweet.findOne({ name: "Kaju Katli" }, { _id: 1 });
+    
+    console.log(sweets)
+    let id = sweets._id;
+    const res = await request(app)
+      .put(`/api/sweets/${id}`)
+      .set("Authorization", "Bearer faketoken123")
+      .send({ price: 120 });
+
+    expect(res.status).toBe(403);
+  });
+
+ 
+});
