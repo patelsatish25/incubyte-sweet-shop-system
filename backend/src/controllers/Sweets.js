@@ -52,7 +52,33 @@ const getSweets=async(req,res)=>{
 const searchSweets =async(req,res)=>{
  
 
-  
+  try {
+    const { name, category, minPrice, maxPrice } = req.query;
+
+    const query = {};
+
+    // Case-insensitive name search
+    if (name) {
+      query.name = { $regex: name, $options: "i" };
+    }
+
+    if (category) {
+      query.category = category;
+    }
+
+    if (minPrice || maxPrice) {
+      query.price = {};
+      if (minPrice) query.price.$gte = parseFloat(minPrice);
+      if (maxPrice) query.price.$lte = parseFloat(maxPrice);
+    }
+    console.log(query)
+
+    const sweets = await Sweets.find(query);
+    res.status(200).json(sweets);
+  } catch (error) {
+    console.error("Search error:", error);
+    res.status(500).json({ error: "Server error" });
+  }
 };
 
 
