@@ -82,7 +82,24 @@ const searchSweets =async(req,res)=>{
 };
 
 const updateSweet=async(req,res)=>{
-  
+  try {
+    const sweetId = req.params.id;
+    const updateData = req.body;
+
+    const updated = await Sweets.findByIdAndUpdate(sweetId, updateData, {
+      new: true,
+      runValidators: true,
+    });
+
+    if (!updated) {
+      return res.status(404).json({ error: "Sweet not found" });
+    }
+
+    res.status(200).json(updated);
+  } catch (error) {
+    console.error("Update error:", error);
+    res.status(500).json({ error: "Server error during update" });
+  }
 }
 
 
