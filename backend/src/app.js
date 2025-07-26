@@ -5,5 +5,4 @@ const SweetRouter=require("./routes/SweetsRoute")
 app.use(express.json())
 app.use("/api/auth",authRouter)
 app.use("/api/sweets",SweetRouter)
-
 module.exports = app;

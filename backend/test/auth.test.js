@@ -103,7 +103,6 @@ describe("auth : login",()=>{
         password: passwordencyp ,
         role: "user"
       });
-      
       const response = await request(app)
         .post("/api/auth/login")
         .send({

@@ -1,13 +1,15 @@
-
-
+const mongoconnect=require("../mongodbcon");
 const Sweets = require("../model/SweetModels");
-const addSweets=(req,res)=>
+if (process.env.NODE_ENV !== "test") {
+    mongoconnect();
+  }
+const addSweets=async(req,res)=>
 {
-    console.log("reqast come")
-    const { sweetId, name, category, price, quantityInStock, imageUrl } = req.body;
+    const role = req.headers["role"];
 
-    if (!sweetId || !name || !category || !price || !quantityInStock || !imageUrl) {
-      return res.status(400).json({ error: "Missing required sweet fields" });
-    }
+    console.log("📌 Role from header:", role);
+ 
+
+
 }
 module.exports =addSweets;

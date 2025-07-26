@@ -1,6 +1,7 @@
 const express =require("express")
 const router=express.Router();
-// const addSweets=require("../controllers/Sweets")
+
 const addSweets=require("../controllers/Sweets")
-router.post("/",addSweets)
+const verify=require("../uthetication")
+router.post("/",verify,addSweets)
 module.exports=router;
