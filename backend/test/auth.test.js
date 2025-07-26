@@ -1,6 +1,7 @@
 const request = require("supertest");
 const app = require("../src/app");
 const mongoser=require("./setUp")
+const bcrypt = require("bcryptjs");
 const UserAccount=require("../src/model/UserModel")
 describe("Auth: Register API", () => {
   
@@ -55,3 +56,25 @@ describe("Auth: Register API", () => {
 
 
 });
+
+describe("auth : login",()=>{
+  beforeAll(async () => {
+    const hashedPassword = await bcrypt.hash("123456", 10);
+    await UserAccount.create({
+      username: "testuser",
+      email: "testuser@example.com",
+      password: hashedPassword,
+    });
+  });
+
+   /** @test - Should return 400 if required fields are missing */
+   it("should return 400 when username or password is missing", async () => {
+    const response = await request(app)
+      .post("/api/auth/login")
+      .send({});
+
+    expect(response.statusCode).toBe(400);
+    expect(response.body).toEqual({ error: "Missing credentials" });
+  });
+
+})
