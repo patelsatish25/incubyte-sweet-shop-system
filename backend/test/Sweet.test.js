@@ -243,7 +243,59 @@ describe("get sweets: GET /api/sweets",()=>{
 })
 
 describe("GET /api/sweets/search (with auth)", () => {
- 
+  it("should return 401 if no token provided", async () => {
+    const res = await request(app).get("/api/sweets/search?name=kaju");
+    expect(res.status).toBe(403);
+  });
+
+  it("should return 403 for invalid token", async () => {
+    const res = await request(app)
+      .get("/api/sweets/search?name=kaju")
+      .set("Authorization", "Bearer invalidtoken123");
+    expect(res.status).toBe(403);
+  });
+
+  it("should return sweets if valid token is provided", async () => {
+    let token =await generateTestToken()
+    const res = await request(app)
+      .get("/api/sweets/search?name=kaju")
+      .set("Authorization",token );
+      console.log(res)
+    expect(res.status).toBe(200);
+    expect(res.body.length).toBe(1);
+    expect(res.body[0].name).toBe("Kaju Katli");
+  });
+
+  it("should return sweets matching exact category", async () => {
+    let token =await generateTestToken()
+    const res = await request(app).get("/api/sweets/search?category=Chocolate").set("Authorization",token );
+    console.log(res.body)
+    expect(res.status).toBe(200);
+    expect(res.body.length).toBe(1);
+    expect(res.body[0].category).toBe("Chocolate");
+  });
+
+  it("should return sweets in given price range", async () => {
+    let token =await generateTestToken()
+    const res = await request(app).get("/api/sweets/search?minPrice=100&maxPrice=200").set("Authorization",token );
+    expect(res.status).toBe(200);
+    expect(res.body.length).toBe(1);
+    expect(res.body[0].name).toBe("Milk Chocolate");
+  });
+  it("should return sweets matching name and category", async () => {
+    let token =await generateTestToken()
+    const res = await request(app).get("/api/sweets/search?name=katli&category=Barfi").set("Authorization",token );
+    expect(res.status).toBe(200);
+    expect(res.body.length).toBe(1);
+    expect(res.body[0].name).toBe("Kaju Katli");
+  });
+  
+  it("should return empty array if no match found", async () => {
+    let token =await generateTestToken()
+    const res = await request(app).get("/api/sweets/search?name=laddu").set("Authorization",token );
+    expect(res.status).toBe(200);
+    expect(res.body.length).toBe(0);
   });
 
 
+})
