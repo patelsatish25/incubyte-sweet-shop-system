@@ -117,5 +117,84 @@ describe("POST /api/sweets/:id/purchase", () => {
   });
 
 
- 
+  describe("POST /api/sweets/:id/restock", () => {
+   
+  
+    
+  
+    it("should increase stock if valid admin token provided", async () => {
+      let sweetid=await  getadminprodect();
+      let token=await generateTestToken();
+      const res = await request(app)
+        .post(`/api/sweets/${sweetid}/restock`)
+        .set("Authorization",token)
+        .set("role","admin")
+        .send({ quantity: 3 });
+  
+      expect(res.status).toBe(200);
+      expect(res.body.message).toContain("Restocked 3");
+      expect(res.body.totalStock).toBe(8);
+  
+      const updated = await Sweet.findById(sweetid);
+      expect(updated.quantityInStock).toBe(8);
+    });
+  
+    it("should return 403 if no token is provided", async () => {
+       let id=await getadminprodect();
+        const res = await request(app)
+        .post(`/api/sweets/${id}/restock`)
+        .send({ quantity: 2 });
+  
+      expect(res.status).toBe(403);
+    });
+  
+    it("should return 403 for invalid token", async () => {
+      const id=getadminprodect()
+        const res = await request(app)
+        .post(`/api/sweets/${id}/restock`)
+        .set("Authorization", "Bearer faketoken123")
+        .send({ quantity: 2 });
+  
+      expect(res.status).toBe(403);
+    });
+  
+    it("should return 403 if user is not an admin", async () => {
+        let sweetid=await  getadminprodect();
+        let token=await generateTestToken();
+      const res = await request(app)
+        .post(`/api/sweets/${sweetid}/restock`)
+        .set("Authorization",token)
+        .set("role","user")
+        .send({ quantity: 2 });
+  
+      expect(res.status).toBe(403);
+      
+    });
+  
+    it("should return 400 if quantity is missing or invalid", async () => {
+        let sweetid=await  getadminprodect();
+        let token=await generateTestToken();
+      const res = await request(app)
+        .post(`/api/sweets/${sweetid}/restock`)
+        .set("Authorization",token)
+        .set("role","admin")
+        .send({}); // missing quantity
+  
+      expect(res.status).toBe(400);
+      expect(res.body.error).toBe("Quantity must be a positive number");
+    });
+  
+    it("should return 404 if sweet not found", async () => {
+      const fakeId = new mongoose.Types.ObjectId();
+      let token=await generateTestToken();
+      const res = await request(app)
+        .post(`/api/sweets/${fakeId}/restock`)
+        .set("Authorization", token)
+        .set("role","admin")
+        .send({ quantity: 2 });
+  
+      expect(res.status).toBe(404);
+      expect(res.body.error).toBe("Sweet not found");
+    });
+  });
   
