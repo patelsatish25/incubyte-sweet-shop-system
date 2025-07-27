@@ -10,7 +10,8 @@ A full-stack web application for managing a sweet shop, built with **React**, **
 > Add these images to your repo under `/screenshots` and use the following Markdown syntax:
 
 ```md
-![login](/sweet-shop-managemnt-screenshort/login.png)
+![login](incubyte-sweet-shop-system/sweet-shop-managemnt-screenshort/login.png)
+
 ![registration](sweet-shop-managemnt-screenshort/ragistion.png)
 ![Dashboard](sweet-shop-managemnt-screenshort/dashborad.png)
 ![user option Dashboard](sweet-shop-managemnt-screenshort/userdashbored.png)
