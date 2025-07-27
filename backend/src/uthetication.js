@@ -4,7 +4,7 @@ const jwt=require('jsonwebtoken');
 const veryfieauth=(req,res,next)=>{
      
 
-    console.log(req.headers["authorization"]);
+    // console.log(req.headers["authorization"]);
     jwt.verify(req.headers["authorization"],"mydrive#@qwert123",(err,user)=>{
        
         

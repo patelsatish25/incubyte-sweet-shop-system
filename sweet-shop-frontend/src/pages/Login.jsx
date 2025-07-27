@@ -25,7 +25,10 @@ const Login = () => {
       
       console.log(data.token);
       sessionStorage.setItem("token", data.token);
+      sessionStorage.setItem("role",data.role)
+      const r=sessionStorage.getItem("role");
       const t = sessionStorage.getItem("token");
+      console.log(r)
       console.log(t); //
       login(data);
       navigate('/dashboard');

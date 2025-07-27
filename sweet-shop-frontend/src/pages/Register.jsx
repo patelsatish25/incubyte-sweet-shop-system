@@ -34,7 +34,7 @@ const Register = () => {
       if (!res.ok) throw new Error(data.error || 'Registration failed');
     console.log(data)
     //   login(data.token); // auto-login after registration
-      navigate('/Login');
+      navigate('/');
     } catch (err) {
      
       setError(err.message);

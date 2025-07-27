@@ -5,7 +5,7 @@ import { useNavigate, Link } from 'react-router-dom';
 const AdminPanel = () => {
   const [restockingId, setRestockingId] = useState(null);
   const [restockAmount, setRestockAmount] = useState("");
-
+ const[users,setUser]=useState({name:"",email:""})
   const { token, user, logout } = useContext(AuthContext);
   const [editingSweetId, setEditingSweetId] = useState(null);
   const [editedSweet, setEditedSweet] = useState({});
@@ -30,6 +30,16 @@ const AdminPanel = () => {
   }
 
   useEffect(() => {
+    const t = sessionStorage.getItem('token');
+    fetch("http://localhost:5000/api/auth/user", {
+      headers: {
+        Authorization: t,
+      },
+    })
+      .then((res) => res.json())
+      .then((data) => { console.log(data); setUser(data) })
+      .catch((err) => console.error("Error fetching user:", err));
+
     fetchSweets();
   }, []);
 
@@ -169,7 +179,7 @@ const AdminPanel = () => {
     <div className="dashboard admin-panel">
       <div className="admin-topbar">
         <div className="admin-info">
-          <strong>Admin:</strong> Satish (admin@example.com)
+          <strong>Admin:</strong> {users.name} ({users.email})
         </div>
         <button className="back-btn" onClick={() => {navigate("/dashboard")}}>
           ⬅️ Back to Dashboard

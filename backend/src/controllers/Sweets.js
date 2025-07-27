@@ -51,34 +51,29 @@ const getSweets=async(req,res)=>{
 
 const searchSweets =async(req,res)=>{
  
+const { name, category, minPrice, maxPrice } = req.query;
+const query = {};
 
-  try {
-    const { name, category, minPrice, maxPrice } = req.query;
+// Case-insensitive name search
+if (name) {
+  console.log(name)
+  query.name = { $regex: name, $options: "i" };
+}
 
-    const query = {};
+// Exclude 'All' category from query
+if (category && category !== "All") {
+  query.category = category;
+}
 
-    // Case-insensitive name search
-    if (name) {
-      query.name = { $regex: name, $options: "i" };
-    }
+if (minPrice || maxPrice) {
+  query.price = {};
+  if (minPrice) query.price.$gte = parseFloat(minPrice);
+  if (maxPrice) query.price.$lte = parseFloat(maxPrice);
+}
 
-    if (category) {
-      query.category = category;
-    }
+const sweets = await Sweets.find(query);
 
-    if (minPrice || maxPrice) {
-      query.price = {};
-      if (minPrice) query.price.$gte = parseFloat(minPrice);
-      if (maxPrice) query.price.$lte = parseFloat(maxPrice);
-    }
-    console.log(query)
-
-    const sweets = await Sweets.find(query);
-    res.status(200).json(sweets);
-  } catch (error) {
-    console.error("Search error:", error);
-    res.status(500).json({ error: "Server error" });
-  }
+res.json(sweets);
 };
 
 const updateSweet=async(req,res)=>{
