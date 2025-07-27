@@ -7,10 +7,11 @@ A full-stack web application for managing a sweet shop, built with **React**, **
 
 ## 📸 Screenshots
 
-> Add these images to your repo under `/screenshots` and use the following Markdown syntax:
+
 
 ```md
 ![login](sweet-shop-managemnt-screenshort/login.png)
+![Admin Panel](sweet-shop-managemnt-screenshort/adamindashboard.png)
 
 ![registration](sweet-shop-managemnt-screenshort/ragistion.png)
 ![Dashboard](sweet-shop-managemnt-screenshort/dashborad.png)
