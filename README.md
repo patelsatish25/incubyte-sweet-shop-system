@@ -198,7 +198,7 @@ git commit -m "feat: Complete Sweet Shop Management System 🎉
 
 🎯 Project completed and ready for submission.
 
-Co-authored-by: ChatGPT <chatgpt@users.noreply.github.com>"
+Co-authored-by: ChatGPT <chatgpt@satish.noreply.github.com>"
 ```
 
 ---
@@ -209,7 +209,7 @@ Co-authored-by: ChatGPT <chatgpt@users.noreply.github.com>"
 MCA Student - gujarat university department of computer science
 Email: patelshatish253@gmail.com
 GitHub: [github.com/satishpatel](https://github.com/patelsatish25)
-
+Co-authored-by: ChatGPT <chatgpt@satish.noreply.github.com>
 Submitted as part of the **Incubyte Assessment** - AI Kata TDD Project.
 
 ---
