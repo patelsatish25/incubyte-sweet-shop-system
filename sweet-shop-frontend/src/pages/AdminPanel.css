@@ -140,8 +140,9 @@
     background-color: #f497c4;
   }
   
-  .tag.pastry {
-    background-color: #a6c8ff;
+ 
+  .tag.barfi {
+    background-color: #601515;
   }
   
   /* === Sweet Details === */
@@ -267,3 +268,89 @@
 .cancel-btn:hover {
   background-color: #c82333;
 }
+
+.restock-input-group {
+  margin: 10px 0;
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+
+.restock-input-group input {
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  width: 120px;
+}
+
+.restock-input-group button {
+  padding: 6px 12px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  background-color: #4caf50;
+  color: white;
+}
+
+.restock-input-group button:last-child {
+  background-color: #888;
+}
+
+/* Add to your AdminPanel.css or Dashboard.css */
+.restock-connected {
+  margin-top: 10px;
+  padding: 12px;
+  background: #f9f9f9;
+  border: 2px dashed #c2c2c2;
+  border-radius: 10px;
+  box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.05);
+  animation: fadeIn 0.3s ease-in-out;
+}
+
+.restock-connected label {
+  display: block;
+  font-weight: bold;
+  margin-bottom: 6px;
+  color: #333;
+}
+
+.restock-connected input {
+  padding: 6px 10px;
+  width: 60px;
+  margin-right: 8px;
+  border: 1px solid #aaa;
+  border-radius: 5px;
+  font-size: 14px;
+}
+
+.restock-connected button {
+  padding: 6px 12px;
+  margin-right: 6px;
+  border: none;
+  border-radius: 5px;
+  font-weight: 500;
+  cursor: pointer;
+  background-color: #007bff;
+  color: white;
+  transition: background-color 0.2s ease;
+}
+
+.restock-connected button:hover {
+  background-color: #0056b3;
+}
+
+.restock-connected button:last-child {
+  background-color: #ccc;
+  color: #333;
+}
+
+.restock-connected button:last-child:hover {
+  background-color: #999;
+}
+
+/* Optional animation */
+@keyframes fadeIn {
+  from { opacity: 0; transform: scale(0.97); }
+  to { opacity: 1; transform: scale(1); }
+}
+
