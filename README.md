@@ -62,10 +62,10 @@ A full-stack web application for managing a sweet shop, built with **React**, **
 | Frontend     | React, CSS         |
 | Backend      | Node.js, Express   |
 | Database     | MongoDB, Mongoose  |
-               | mongodb-memory-server
 | Auth         | JWT                |
 | Testing      | Jest, Supertest    |
 | Deployment   | Localhost / GitHub |
+
 
 ---
 
