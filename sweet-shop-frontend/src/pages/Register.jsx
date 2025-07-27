@@ -77,15 +77,7 @@ const Register = () => {
           />
 
           {/* ✅ Role Dropdown */}
-          <select
-            name="role"
-            value={form.role}
-            onChange={handleChange}
-            required
-          >
-            <option value="user">User</option>
-            <option value="admin">Admin</option>
-          </select>
+        
 
           <button type="submit">Register</button>
         </form>
