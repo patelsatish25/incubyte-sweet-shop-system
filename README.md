@@ -7,12 +7,9 @@ A full-stack web application for managing a sweet shop, built with **React**, **
 
 ## 📸 Screenshots
 
-![login](sweet-shop-managemnt-screenshort/login.png)
 
-```md
-![login](sweet-shop-managemnt-screenshort/login.png)
-![Admin Panel](sweet-shop-managemnt-screenshort/adamindashboard.png)
 
+![login](sweet-shop-managemnt-screenshort/login.png)
 ![registration](sweet-shop-managemnt-screenshort/ragistion.png)
 ![Dashboard](sweet-shop-managemnt-screenshort/dashborad.png)
 ![user option Dashboard](sweet-shop-managemnt-screenshort/userdashbored.png)
@@ -28,7 +25,7 @@ A full-stack web application for managing a sweet shop, built with **React**, **
 
 
 
-```
+
 
 ---
 
