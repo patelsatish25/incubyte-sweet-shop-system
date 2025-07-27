@@ -40,7 +40,7 @@ const Login = () => {
   return (
     <div className="login-page">
       <div className="login-box">
-        <h2>Welcome Back</h2>
+        <h2>Sweet Shop Management System</h2>
         <p className="subtitle">Please log in to your account</p>
         <form onSubmit={handleSubmit}>
           <input
