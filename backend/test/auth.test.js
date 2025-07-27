@@ -17,7 +17,7 @@ describe("Auth: Register API", () => {
     expect(response.statusCode).toBe(400);
     expect(response.body).toEqual({ error: "Missing required fields" });
   });
-  it("should return 500 if username is already taken", async () => {
+  it("should return 409 if username is already taken", async () => {
     await UserAccount.create({
       username: "satish@123",
       email: "satish@example.com",
@@ -34,7 +34,7 @@ describe("Auth: Register API", () => {
         role:"admin"
       });
   
-    expect(response.statusCode).toBe(500);
+    expect(response.statusCode).toBe(409);
      expect(response.body).toEqual({ error: "Username is already used" });
   }, 10000);
 

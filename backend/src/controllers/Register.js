@@ -22,7 +22,7 @@ const Register = async(req, res) => {
     if (veryfie) {
       // return res.status(500).json({ error: "Username is already used" });
       console.log("✅ Duplicate user found. Sending error...");
-  return res.status(500).json({ error: "Username is already used" });
+  return res.status(409).json({ error: "Username is already used" });
   }
 
   // ✅ Step 3: Hash password using bcrypt

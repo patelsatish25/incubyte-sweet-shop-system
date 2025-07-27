@@ -1,0 +1,269 @@
+/* === Base Panel Layout === */
+.admin-panel {
+    background: linear-gradient(to bottom, #fff0f5, #a0f0d0);
+    padding: 2rem;
+    font-family: 'Segoe UI', sans-serif;
+    min-height: 100vh;
+  }
+  
+  /* === Header Title === */
+  h1 {
+    font-size: 1.8rem;
+    margin-bottom: 1.5rem;
+    color: #333;
+  }
+  
+  /* === Top Bar with Admin Info and Back Button === */
+  .admin-topbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+  }
+  
+  .admin-info {
+    font-weight: bold;
+    font-size: 1rem;
+    color: #333;
+  }
+  
+  .back-btn {
+    background-color: #ffb6c1;
+    color: #333;
+    border: none;
+    padding: 0.5rem 1rem;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: 500;
+    transition: background-color 0.2s ease;
+  }
+  
+  .back-btn:hover {
+    background-color: #ff8db3;
+  }
+  
+  /* === Add Sweet Form === */
+  .admin-form {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+  }
+  
+  .admin-form input  {
+    padding: 0.6rem 1rem;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    flex: 1 0 180px;
+    font-size: 1rem;
+  }
+  
+  .admin-form select  {
+    padding: 0.6rem 1rem;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    flex: 1 0 180px;
+    font-size: 1rem;
+  }
+  option {
+    padding: 10px;
+    background-color: #ffffff;
+  }
+ 
+  .add-btn {
+    background-color: #28a745;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    padding: 0.6rem 1.5rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.2s;
+  }
+  
+  .add-btn:hover {
+    background-color: #218838;
+  }
+  
+  /* === Search Bar === */
+  .admin-search {
+    margin-bottom: 1.5rem;
+  }
+  
+  .admin-search input {
+    width: 100%;
+    max-width: 400px;
+    padding: 0.6rem 1rem;
+    font-size: 1rem;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+  }
+  
+  /* === Sweet Grid === */
+  .sweet-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 1.5rem;
+  }
+  
+  /* === Sweet Card Styling === */
+  .sweet-card {
+    background: #fff;
+    border-radius: 12px;
+    padding: 1rem;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    position: relative;
+    transition: transform 0.2s;
+  }
+  
+  .sweet-card:hover {
+    transform: translateY(-5px);
+  }
+  
+  /* === Category Tag === */
+  .tag {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    padding: 0.2rem 0.8rem;
+    border-radius: 12px;
+    font-size: 0.75rem;
+    font-weight: bold;
+    color: #fff;
+  }
+  
+  .tag.chocolate {
+    background-color: #deb887;
+  }
+  
+  .tag.candy {
+    background-color: #f497c4;
+  }
+  
+  .tag.pastry {
+    background-color: #a6c8ff;
+  }
+  
+  /* === Sweet Details === */
+  .sweet-card h3 {
+    margin-top: 1.5rem;
+    margin-bottom: 0.5rem;
+    font-size: 1.1rem;
+    color: #333;
+  }
+  
+  .price {
+    color: #e91e63;
+    font-weight: bold;
+    margin: 0.5rem 0;
+  }
+  
+  .stock.in {
+    color: green;
+    font-weight: 500;
+  }
+  
+  .stock.out {
+    color: red;
+    font-weight: bold;
+  }
+  
+  /* === Action Buttons (Edit/Delete/Restock) === */
+  .admin-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-top: 1rem;
+  }
+  
+  .admin-actions button {
+    padding: 0.4rem 0.8rem;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 0.9rem;
+    font-weight: 500;
+    transition: background-color 0.2s ease;
+  }
+  
+  .edit-btn {
+    background-color: #007bff;
+    color: white;
+  }
+  
+  .edit-btn:hover {
+    background-color: #0056b3;
+  }
+  
+  .delete-btn {
+    background-color: #dc3545;
+    color: white;
+  }
+  
+  .delete-btn:hover {
+    background-color: #b21f2d;
+  }
+  
+  .restock-btn {
+    background-color: #ffc107;
+    color: black;
+  }
+  
+  .restock-btn:hover {
+    background-color: #e0a800;
+  }
+  
+
+  /* Style for input fields inside editable sweet card */
+.sweet-card.edit-mode input {
+  display: block;
+  width: 100%;
+  padding: 10px 12px;
+  margin: 6px 0;
+  font-size: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  outline: none;
+  box-sizing: border-box;
+  transition: border-color 0.3s, box-shadow 0.3s;
+}
+
+.sweet-card.edit-mode input:focus {
+  border-color: #4a90e2;
+  box-shadow: 0 0 0 2px rgba(74, 144, 226, 0.2);
+}
+
+/* Style save and cancel buttons */
+.edit-actions {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 10px;
+}
+
+.save-btn,
+.cancel-btn {
+  padding: 8px 14px;
+  border: none;
+  border-radius: 6px;
+  font-size: 0.95rem;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.save-btn {
+  background-color: #28a745;
+  color: white;
+}
+
+.save-btn:hover {
+  background-color: #218838;
+}
+
+.cancel-btn {
+  background-color: #dc3545;
+  color: white;
+}
+
+.cancel-btn:hover {
+  background-color: #c82333;
+}

@@ -13,14 +13,14 @@ const addSweets=async(req,res)=>
     if (role !== "admin") {
       return res.status(403).json({ error: "Access denied. Admins only." });
     }
-    const { sweetId, name, category, price, quantityInStock } = req.body;
+    const {  name, category, price, quantityInStock } = req.body;
 
-    if (!sweetId || !name || !category || !price || !quantityInStock ) {
+    if ( !name || !category || !price || !quantityInStock ) {
       return res.status(400).json({ error: "Missing required sweet fields" });
     }
     // Save the sweet
     const newSweet = new Sweets({
-        sweetId,  // You need to add this field in schema too
+          // You need to add this field in schema too
         name,
         category,
         price,
@@ -85,6 +85,8 @@ const updateSweet=async(req,res)=>{
   try {
     const sweetId = req.params.id;
     const updateData = req.body;
+   
+   console.log("calll")
 
     const updated = await Sweets.findByIdAndUpdate(sweetId, updateData, {
       new: true,

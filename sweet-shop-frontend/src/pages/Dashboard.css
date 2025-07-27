@@ -1,0 +1,244 @@
+/* === Page Background & Font === */
+.dashboard {
+    padding: 2rem;
+    background: linear-gradient(to bottom, #ffe4ec, #a0f0d0);
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    min-height: 100vh;
+  }
+  
+  /* === Header Styling === */
+  header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+  }
+  
+  header h1 {
+    font-size: 1.8rem;
+    margin: 0;
+  }
+  
+  .header-controls {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+  }
+  
+  /* === Search Input === */
+  header input {
+    padding: 0.5rem;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+    width: 500px;
+    height: 40px;
+  }
+
+  
+  
+  /* === User Profile Section === */
+  .user-profile {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    position: relative;
+    color: #333;
+    font-weight: 500;
+  }
+  
+  .user-greeting {
+    font-weight: 600;
+    font-size: 0.95rem;
+  }
+  
+  /* === Dropdown Menu === */
+  .dropdown {
+    position: relative;
+  }
+  
+  .profile-button {
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+    cursor: pointer;
+    color: #555;
+    padding: 0;
+    margin: 0;
+  }
+  
+  .dropdown-content {
+    display: none;
+    position: absolute;
+    right: 0;
+    background-color: #ffffff;
+    color: #333;
+    min-width: 220px;
+    padding: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    z-index: 999;
+  }
+  
+  .dropdown:hover .dropdown-content {
+    display: block;
+  }
+  
+  /* Dropdown Buttons */
+  .settings-btn,
+  .logout-btn {
+    display: block;
+    margin-top: 0.75rem;
+    padding: 0.5rem;
+    width: 100%;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: 500;
+  }
+  
+  .settings-btn {
+    background-color: #e0f0ff;
+    color: #0056a3;
+  }
+  
+  .logout-btn {
+    background-color: #ffe0e0;
+    color: #b00020;
+  }
+  
+  /* === Filters Section === */
+  .filters {
+    margin: 1.5rem 0;
+  }
+  
+  /* === Category Buttons === */
+  .categories {
+    margin-bottom: 1rem;
+  }
+  
+  .categories button {
+    margin: 0 0.5rem 0.5rem 0;
+    padding: 0.4rem 1rem;
+    border: none;
+    border-radius: 20px;
+    background: #eee;
+    cursor: pointer;
+    color: #333;
+    transition: background-color 0.2s;
+  }
+  
+  .categories button.active {
+    background: #ffb6c1;
+    font-weight: bold;
+    color: white;
+  }
+  
+  /* === Price Range Sliders === */
+  .price-range {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+    margin-bottom: 1.5rem;
+  }
+  
+  .price-range label {
+    font-weight: bold;
+    margin-right: 1rem;
+  }
+  
+  /* === Sweet Card Grid === */
+  .sweet-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 1.5rem;
+  }
+  
+  /* === Sweet Card Styling === */
+  .sweet-card {
+    background: #fff;
+    border-radius: 12px;
+    padding: 1rem;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    position: relative;
+    transition: transform 0.2s;
+  }
+  
+  .sweet-card:hover {
+    transform: translateY(-5px);
+  }
+  
+  /* === Category Tag on Card === */
+  .tag {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    padding: 0.2rem 0.8rem;
+    border-radius: 12px;
+    font-size: 0.75rem;
+    font-weight: bold;
+    color: #fff;
+  }
+  
+  .tag.chocolate {
+    background-color: #deb887;
+  }
+  
+  .tag.candy {
+    background-color: #f497c4;
+  }
+  
+  .tag.pastry {
+    background-color: #a6c8ff;
+  }
+  
+  /* === Sweet Info === */
+  .sweet-card h3 {
+    margin-top: 1.5rem;
+    margin-bottom: 0.5rem;
+    font-size: 1.1rem;
+  }
+  
+  .price {
+    color: #e91e63;
+    font-weight: bold;
+    margin: 0.5rem 0;
+  }
+  
+  .stock.in {
+    color: green;
+  }
+  
+  .stock.out {
+    color: red;
+    font-weight: bold;
+  }
+  
+  /* === Purchase Button === */
+  button {
+    margin-top: 1rem;
+    background-color: #ff69b4;
+    color: white;
+    padding: 0.5rem 1rem;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: 500;
+  }
+  
+  button:disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
+  }
+  
+
+  .empty-state {
+    text-align: center;
+    padding: 2rem;
+    color: #666;
+  }
+  .empty-state h3 {
+    font-size: 1.5rem;
+    color: #333;
+  }
